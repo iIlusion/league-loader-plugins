@@ -1,4 +1,10 @@
 # Name Spoofer Plugin
+
+## To-Do
+- Button to enable/disable ingame
+- Add custom names to spoof enemy/ally
+- Text Form/Input to change spoofed name ingame
+
 ## How to use
 - Download [League Loader](https://leagueloader.app)
 - Download [name_spoofer.js](https://raw.githubusercontent.com/iIlusion/league-loader-plugins/main/Name%20Spoofer/name_spoofer.js) and configs folder with name_spoofer_config.json
