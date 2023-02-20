@@ -18,3 +18,5 @@ Profile
 ![Name Spoofer Preview](https://user-images.githubusercontent.com/49544373/220104904-6d0194b8-681e-4a5d-939a-b9294a9f3130.png)
 Match History
 ![Name Spoofer Preview2](https://user-images.githubusercontent.com/49544373/220105260-d5e58d6b-a212-4e14-a0a6-fb4c386192bc.png)
+
+Theme by [Rumi](https://github.com/rumi-chan/LeagueThemes) - [Spirit Blossom Irelia](https://github.com/rumi-chan/LeagueThemes/tree/main/Irelia-theme)
