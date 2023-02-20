@@ -11,7 +11,6 @@ window.addEventListener("load", () => {
                 let elements = document.querySelectorAll(
                     ".style-profile-summoner-name, .name, .match-details-team-list .player-history-mode, .custom-member-name, .name-text"
                 );
-                console.log(elements);
                 if (elements.length >= 1) {
                     for (var i = 0; i < elements.length; i++) {
                         elements[i].textContent = name;
