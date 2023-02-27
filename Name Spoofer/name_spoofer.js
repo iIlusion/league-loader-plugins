@@ -1,9 +1,10 @@
-let enabled = require("./configs/name_spoofer_config.json")["spoof"];
-let name = require("./configs/name_spoofer_config.json")["name"];
+import data from "./configs/name_spoofer_config.json";
+let enabled = data["spoof"];
+let name = data["name"];
 
 window.addEventListener("load", () => {
     const interval = setInterval(() => {
-        if (!enabled) return clearInterval(interval)
+        if (!enabled) return clearInterval(interval);
         const manager = document.getElementById("rcp-fe-viewport-root");
         if (manager) {
             clearInterval(interval);
