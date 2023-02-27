@@ -1,6 +1,6 @@
-import data from "./configs/name_spoofer_config.json";
-let enabled = data["spoof"];
-let name = data["name"];
+import data from "./config.json";
+let enabled = data.spoof;
+let name = data.name;
 
 window.addEventListener("load", () => {
     const interval = setInterval(() => {
