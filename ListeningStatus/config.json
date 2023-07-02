@@ -1,6 +1,14 @@
 {
+    "enable": true,
     "mode": "SPOTIFY",
-    "lastfmKey": "",
-    "lastfmUser": "",
-    "spotifyTempKey": ""
+    "SPOTIFY": {
+        "refreshToken": "",
+        "client_id": "",
+        "client_secret": ""
+        
+    },
+    "LASTFM": {
+        "key": "",
+        "user": ""
+    }
 }

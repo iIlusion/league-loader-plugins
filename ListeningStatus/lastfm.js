@@ -1,7 +1,7 @@
 import axios from "https://esm.run/axios";
 import config from "./config.json"
 
-const lastfmUrl = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${config.lastfmUser}&api_key=${config.lastfmKey}&format=json&limit=1`;
+const lastfmUrl = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${config.LASTFM.user}&api_key=${config.lastfmUrl.key}&format=json&limit=1`;
 
 export async function nowPlayingFM() {
     const response = await axios.get(lastfmUrl)

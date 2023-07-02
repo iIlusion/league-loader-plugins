@@ -12,8 +12,9 @@ async function getNowPlaying(mode) {
     }
 }
 
-setInterval(
+const interval = setInterval(
     async () => {
+        if (!config.enable) return clearInterval(interval)
         let music = await getNowPlaying(config.mode);
         if (!music && oldMusic) {
             await changeStatus(`Now Playing: None`);

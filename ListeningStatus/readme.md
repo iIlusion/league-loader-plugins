@@ -2,7 +2,7 @@
 
 ## To-Do
 - Button to enable/disable ingame
-- Auto get/renew spotify access token
+- Auto get spotify access token
 - Add spotify timestamp
 - Add button ingame to change status string
 
@@ -14,23 +14,31 @@ Changes your status within the client to the song you are currently listening to
 
 ## How to use
 - Download [League Loader](https://leagueloader.app) V1.0.0 or above
-- ^ If League Loader release version is V0.6.0 or lower than V1.0.0, donwload from the latest automated builds of each commit ([Here](https://github.com/nomi-san/league-loader/actions)), you need to be logged into a github account
 - Download Listening Status folder
 - Paste folder inside your League Loader plugins folder
 
-### Spotify
+### Spotify (ITS ONE TIME CONFIG)
 - Login in your spotify account in your browser
-- Go to [spotify console](https://developer.spotify.com/console/get-users-currently-playing-track)
-- Click in green button GET TOKEN
-- Check the "Required scopes for this endpoint: user-read-currently-playing"
-- Click in green button REQUEST TOKEN
-- Copy the generated token in OAuth Token label
-- Paste token in "spotifyTempKey" on config.json
-- Change "mode" to SPOTIFY
+- Go to [This Website](https://spotify-refresh-token-generator.netlify.app/)
+- Click Get Started
+- Open spotify developers dashboard
+- Create a new app ([image example](link here))
+- Save new app
+- You will redirect to the app configs, click on the white/purple button "Settings" on the right side
+- Copy "Client ID" and "Client Secret"
+- Paste both inside config.json
+- Go back to the previous website
+- Type your client_id and client_secret and select user-read-currently-playing
+- Press Get Spotify Access Code
+- You will be redirected to the authorization page of the app you just created, just click agree
+- Copy refresh token and paste inside config.json
+- Set mode to "SPOTIFY"
+- Restart League of Legends client
+
 
 ### LastFM
 - Login in your LastFM account in your browser
 - Create a [LastFM API Account](https://www.last.fm/api/account/create)
 - Copy the API Key in next screen
-- Paste the LastFM API Key in config.json on "lastfmKey" and write your LastFM User in "lastfmUser"
-- Change "mode" to LASTFM
+- Paste the LastFM API Key and LastFM User in config.json
+- Set mode to "LASTFM"

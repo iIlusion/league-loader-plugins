@@ -1,69 +1,67 @@
-import axios from "https://esm.run/axios";
-let opened = false;
-const callbackURL = AuthCallback.createURL();
-import config from "./config.json"
+import config from "./config.json";
 
 // Build token request URL with our gateway
+//https://spotify-refresh-token-generator.netlify.app/
 
 export async function getToken() {
-    if (
-        DataStore.has("access_token") && (DataStore.get("spotify-expires") - new Date().getTime()) > 60 * 1000) return DataStore.get("access_token");
-    console.log("getting new token")
-    const scopes = [
-        "user-read-currently-playing",
-        "user-top-read",
-        "user-modify-playback-state",
-    ];
-    const query = new URLSearchParams({
-        scope: scopes.join(" "),
-        redirect_uri: callbackURL,
-    });
-
-    if (!opened) { 
-        window.open(
-            "https://spotify.leagueloader.app/login?" + query.toString()
-        );
-        opened = true;
-
-        // Wait for authorized, or 180s (timeout) by default
-        const response = await AuthCallback.readResponse(
-            callbackURL /*, 180000 */
-        );
-
-        if (response === null) {
-            console.log("180s timeout trying to get response from auth callback")
+    if (DataStore.get("listeningStatus_expires_in")) {
+        if (
+            DataStore.get("listeningStatus_expires_in" > new Date().getTime())
+        ) {
+            console.log("expirou");
         } else {
-            const params = new URLSearchParams(response);
-            const data = JSON.parse(window.atob(params.get("data")));
-            if (data.access_token) {
-                await DataStore.set('access_token', data.access_token)
-                let now = new Date();
-                await DataStore.set('spotify-expires', now.getTime() + (data.expires_in * 1000));
-                return data.access_token
-            } else {
-                console.log(
-                    "Response don't have access token"
-                );
-            }
+            return DataStore.get("spotify_access_token");
         }
     }
+
+    const basic = window.btoa(
+        `${config.SPOTIFY.client_id}:${config.SPOTIFY.client_secret}`
+    );
+
+    const response = await fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: {
+            Authorization: `Basic ${basic}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+            grant_type: "refresh_token",
+            refresh_token: config.SPOTIFY.refreshToken,
+        }),
+    });
+
+    const data = await response.json();
+
+    DataStore.set(
+        "listeningStatus_expires_in",
+        new Date().getTime() + data.expires_in
+    );
+    DataStore.set("spotify_access_token", data.access_token);
+
+    return data.access_token;
 }
 
 export async function nowPlayingSpot() {
-    const token = config.spotifyTempKey
+    const token = await getToken();
 
-    const headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-    };
+    const response = await fetch(
+        "https://api.spotify.com/v1/me/player/currently-playing",
+        {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    );
 
-    const response = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {headers})
+    const data = await response.json();
 
-    if (response.data.is_playing){
+    if (data.is_playing) {
         return {
-            name: response.data.item.name,
-            artist: response.data.item.artists[0].name,
+            name: data.item.name,
+            artist: data.item.artists[0].name,
         };
-    } else return false
+    } else return false;
 }
