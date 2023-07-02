@@ -6,9 +6,8 @@ import config from "./config.json";
 export async function getToken() {
     if (DataStore.get("listeningStatus_expires_in")) {
         if (
-            DataStore.get("listeningStatus_expires_in" > new Date().getTime())
+            DataStore.get("listeningStatus_expires_in") < new Date().getTime()
         ) {
-            console.log("expirou");
         } else {
             return DataStore.get("spotify_access_token");
         }
