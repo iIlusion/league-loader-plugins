@@ -17,12 +17,14 @@ Changes your status within the client to the song you are currently listening to
 - Download Listening Status folder
 - Paste folder inside your League Loader plugins folder
 
+- [config.json example](https://i.imgur.com/6txTw01.png)
+
 ### Spotify (ITS ONE TIME CONFIG)
 - Login in your spotify account in your browser
 - Go to [This Website](https://spotify-refresh-token-generator.netlify.app/)
 - Click Get Started
 - Open spotify developers dashboard
-- Create a new app ([image example](link here))
+- Create a new app ([image example](https://i.imgur.com/UrolYW0.png))
 - Save new app
 - You will redirect to the app configs, click on the white/purple button "Settings" on the right side
 - Copy "Client ID" and "Client Secret"
