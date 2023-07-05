@@ -53,7 +53,7 @@ window.addEventListener("load", () => {
                 elements.forEach((element) => {
                     element.textContent = name;
                 });
-            }).observe(manager, {
+            }).observe(document, {
                 childList: true,
                 subtree: true,
             });
