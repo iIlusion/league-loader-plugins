@@ -6,8 +6,38 @@
 
 import data from "./config.json";
 
-const { spoof, name } = data;
-let systemMessage;
+let { name, spoof } = data;
+
+window.addEventListener("load", () => {
+  const inputOptions = {
+    placeholder: "New username",
+    setupAttribute: "nick-changer-setup",
+  };
+
+  setInterval(() => {
+    const nickContainer = document.querySelector("div > div.name");
+    if (!nickContainer || nickContainer.hasAttribute(inputOptions.setupAttribute)) { return; }
+    nickContainer.setAttribute(inputOptions.setupAttribute, "true");
+
+    const flatInput = document.createElement("lol-uikit-flat-input");
+    const userInput = document.createElement("input");
+    userInput.setAttribute("placeholder", inputOptions.placeholder);
+    flatInput.appendChild(userInput);
+
+    nickContainer.addEventListener("click", () => {
+      nickContainer.parentNode.replaceChild(flatInput, nickContainer);
+      userInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          if (userInput.value.trim().length) {
+            flatInput.parentNode.replaceChild(nickContainer, flatInput);
+            name = userInput.value;
+          }
+        }
+      });
+      userInput.focus();
+    });
+  }, 1000);
+});
 
 window.addEventListener("load", () => {
     const interval = setInterval(() => {
