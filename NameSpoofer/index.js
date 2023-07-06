@@ -47,7 +47,7 @@ window.addEventListener("load", () => {
             clearInterval(interval);
             new MutationObserver((mutations) => {
                 const elements = document.querySelectorAll(
-                    ".banner-summoner-name, .chat-gnt, .chat-name, .conversation-title, .custom-member-name, .hover-card-game-name, .hover-card-game-tag, .hover-card-name, .lol-leagues-list-col-3.lol-leagues-list-col, .lol-leagues-list-item.me.current.ember-view .rank-standing-row-component, .match-details-team-list .player-history-mode, .member-name, .name, .name-text, .parties-player-name, .player-name, .prompted-voting-candidate-name, .scoreboard-row-player-name, .style-profile-search-trail-summoner-name, .style-profile-summoner-name, .message-name, .system-message, .invite-info-name, .lol_parties__invite_dialog_name-and-context, .chat-name, .chat-gnt, .message-box-messages-system-message"
+                    ".blocked-player-game-name, .banner-summoner-name, .chat-gnt, .chat-name, .conversation-title, .custom-member-name, .hovercard-open-party-summoners.chat, .hover-card-game-name, .hover-card-game-tag, .hover-card-name, .lol-leagues-list-col-3.lol-leagues-list-col, .lol-leagues-list-item.me.current.ember-view .rank-standing-row-component, .match-details-team-list .player-history-mode, .member-name, .name, .name-text, .parties-player-name, .player-name, .prompted-voting-candidate-name, .scoreboard-row-player-name, .style-profile-search-trail-summoner-name, .style-profile-summoner-name, .message-name, .system-message, .invite-info-name, .lol_parties__invite_dialog_name-and-context, .chat-name, .chat-gnt, .message-box-messages-system-message"
                 );
 
                 elements.forEach((element) => {
